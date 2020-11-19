@@ -1,5 +1,4 @@
 from random import shuffle
-import re
 
 import html2text
 import inquirer
