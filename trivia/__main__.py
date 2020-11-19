@@ -1,9 +1,7 @@
 import inquirer
 
 from .scraper import _get_json
-from .utils import evaluate_score, to_text
-
-from random import shuffle
+from .utils import evaluate_score, to_text, generate_quiz_questions
 
 # Ask for the input
 difficulty = inquirer.list_input(
@@ -32,28 +30,13 @@ trivia_response = _get_json(
 
 
 # Start the game!
-print("Let's start!\n")
+print("\nLet's start!\n")
 
 # Initialize the questions, and stuff for starting.
-questions = []
-
-for i, trivia in enumerate(trivia_response):
-    question = to_text(trivia_response[i]["question"])
-
-    choices = to_text(trivia_response[i]["incorrect_answers"] + [trivia_response[i]["correct_answer"]])
-    shuffle(choices)
-
-    questions.append(
-        inquirer.List(
-            name=str(i + 1),
-            message=question,
-            choices=choices,
-        )
-    )
+questions = generate_quiz_questions(trivia_response)
 
 # Ask the questions
 answers = inquirer.prompt(questions)
-
 
 # Evaluate the score and print it.
 score = evaluate_score(trivia_response, answers)
