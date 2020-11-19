@@ -20,16 +20,21 @@ question_count = inquirer.text(
 if not question_count.isnumeric():
     question_count = 10
 
-trivia_response = _get_json({
-    "amount": question_count,
-    "difficulty": difficulty,
-    "type": "multiple"
-})["results"]
+
+# Get the JSON Response
+trivia_response = _get_json(
+    {
+        "amount": question_count,
+        "difficulty": difficulty,
+        "type": "multiple"
+    }
+)["results"]
 
 
 # Start the game!
 print("Let's start!\n")
 
+# Initialize the questions, and stuff for starting.
 questions = []
 
 for i, trivia in enumerate(trivia_response):
@@ -47,8 +52,11 @@ for i, trivia in enumerate(trivia_response):
         )
     )
 
+# Ask the questions
 answers = inquirer.prompt(questions)
 
+
+# Evaluate the score and print it.
 score = evaluate_score(trivia_response, answers)
 
 print(f"You scored {score} out of {len(trivia_response)}.")
