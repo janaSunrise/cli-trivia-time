@@ -42,7 +42,6 @@ for i, trivia in enumerate(trivia_response):
 
     choices = to_text(trivia_response[i]["incorrect_answers"] + [trivia_response[i]["correct_answer"]])
     shuffle(choices)
-    print(i)
 
     questions.append(
         inquirer.List(
