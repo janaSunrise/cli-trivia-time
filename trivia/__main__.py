@@ -27,7 +27,7 @@ question_count = inquirer.text(
 )
 
 if not question_count.isnumeric():
-    question_count = 10
+    question_count = 5
 
 
 # Get the JSON Response

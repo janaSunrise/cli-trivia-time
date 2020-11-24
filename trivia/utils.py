@@ -47,7 +47,7 @@ def generate_quiz_questions(trivia_response, question_type):
             )
         else:
             questions.append(
-                inquirer.confirm(
+                inquirer.Confirm(
                     name=str(i + 1),
                     message=question,
                     default=False
