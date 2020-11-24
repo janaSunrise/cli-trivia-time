@@ -15,6 +15,12 @@ Execute the following commands to get started:
 pipenv install
 pipenv run start
 ```
+or 
+```sh
+pipenv install
+pipenv shell
+python -m trivia
+```
 
 ### TODOs Planned
 

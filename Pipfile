@@ -9,6 +9,7 @@ inquirer = "*"
 html2text = "*"
 
 [dev-packages]
+flake8 = "*"
 
 [scripts]
 start = "python -m trivia"
