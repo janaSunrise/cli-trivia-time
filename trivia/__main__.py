@@ -1,7 +1,7 @@
 import inquirer
 
 from .scraper import _get_json
-from .utils import evaluate_score, to_text, generate_quiz_questions
+from .utils import evaluate_score, generate_quiz_questions
 
 # --- Question Type section ---
 question_type = inquirer.list_input(
@@ -30,7 +30,7 @@ if not question_count.isnumeric():
     question_count = 5
 
 
-# Get the JSON Response
+# -- Get the JSON Response --
 trivia_response = _get_json(
     {
         "amount": question_count,
