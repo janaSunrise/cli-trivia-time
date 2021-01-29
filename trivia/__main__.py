@@ -1,18 +1,15 @@
 import inquirer
 
 from .scraper import _get_json
-from .utils import evaluate_score, generate_quiz_questions
+from .utils import evaluate_score, generate_quiz_questions, get_clean_question_type
 
 # --- Question Type section ---
-question_type = inquirer.list_input(
-    message="What should be the Trivia Type",
-    choices=["True and False", "Multiple Choice"]
-).lower()
-
-if question_type == "true and false":
-    question_type = "boolean"
-else:
-    question_type = "multiple"
+question_type = get_clean_question_type(
+    inquirer.list_input(
+        message="What should be the Trivia Type",
+        choices=["True and False", "Multiple Choice"]
+    ).lower()
+)
 
 # --- Difficulty Section ---
 difficulty = inquirer.list_input(

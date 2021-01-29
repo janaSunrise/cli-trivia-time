@@ -14,6 +14,13 @@ def to_text(text):
     return handler.handle(text).strip().replace("\n", " ")
 
 
+def get_clean_question_type(question_type):
+    if question_type == "true and false":
+        return "boolean"
+    else:
+        return "multiple"
+
+
 def evaluate_score(json, answers):
     score = 0
     correct_answers = []
