@@ -3,7 +3,7 @@ import requests
 BASE_URL = "https://opentdb.com/api.php"
 
 
-def _get_json(params: dict) -> requests.Response:
+def _get_json(params: dict) -> dict:
     if params["difficulty"] == "any":
         params.pop("difficulty")
 
