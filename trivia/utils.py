@@ -1,3 +1,4 @@
+import typing as t
 from random import shuffle
 
 import html2text
@@ -7,21 +8,21 @@ handler = html2text.HTML2Text()
 handler.ignore_links = True
 
 
-def to_text(text):
+def to_text(text: str) -> t.Union[str, list]:
     if isinstance(text, list):
         return [handler.handle(elem).strip().replace("\n", " ") for elem in text]
 
     return handler.handle(text).strip().replace("\n", " ")
 
 
-def get_clean_question_type(question_type):
+def get_clean_question_type(question_type: str) -> str:
     if question_type == "true and false":
         return "boolean"
     else:
         return "multiple"
 
 
-def evaluate_score(json, answers):
+def evaluate_score(json: dict, answers: dict) -> int:
     score = 0
     correct_answers = []
 
@@ -35,7 +36,7 @@ def evaluate_score(json, answers):
     return score
 
 
-def generate_quiz_questions(trivia_response, question_type):
+def generate_quiz_questions(trivia_response: dict, question_type: str) -> list:
     questions = []
 
     for i, trivia in enumerate(trivia_response):
