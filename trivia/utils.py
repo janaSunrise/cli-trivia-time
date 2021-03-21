@@ -1,9 +1,11 @@
 import typing as t
 from random import shuffle
 
+import colorama
 import html2text
 import inquirer
 
+colorama.init(autoreset=True)
 handler = html2text.HTML2Text()
 handler.ignore_links = True
 
@@ -13,6 +15,14 @@ def to_text(text: str) -> t.Union[str, list]:
         return [handler.handle(elem).strip().replace("\n", " ") for elem in text]
 
     return handler.handle(text).strip().replace("\n", " ")
+
+
+def get_color(color: str) -> str:
+    return getattr(colorama.Fore, color.upper())
+
+
+def get_bright_color(color: str) -> str:
+    return getattr(colorama.Style, "BRIGHT") + get_color(color)
 
 
 def get_clean_question_type(question_type: str) -> str:
