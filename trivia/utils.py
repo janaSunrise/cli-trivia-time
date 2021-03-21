@@ -59,7 +59,7 @@ def generate_quiz_questions(trivia_response: dict, question_type: str) -> list:
             questions.append(
                 inquirer.List(
                     name=str(i + 1),
-                    message=question,
+                    message=get_bright_color("CYAN") + question,
                     choices=choices,
                 )
             )
@@ -67,7 +67,7 @@ def generate_quiz_questions(trivia_response: dict, question_type: str) -> list:
             questions.append(
                 inquirer.Confirm(
                     name=str(i + 1),
-                    message=question,
+                    message=get_bright_color("CYAN") + question,
                     default=False
                 )
             )
