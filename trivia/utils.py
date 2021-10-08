@@ -50,9 +50,11 @@ def generate_quiz_questions(trivia_response: dict, question_type: str) -> list:
     questions = []
 
     for i, trivia in enumerate(trivia_response):
+        # Get question and choices
         question = to_text(trivia["question"])
-
         choices = to_text(trivia["incorrect_answers"] + [trivia["correct_answer"]])
+
+        # Shuffle the list
         shuffle(list(choices))
 
         if question_type == "multiple":
@@ -68,7 +70,7 @@ def generate_quiz_questions(trivia_response: dict, question_type: str) -> list:
                 inquirer.Confirm(
                     name=str(i + 1),
                     message=get_bright_color("LIGHTBLUE_EX") + question,
-                    default=False
+                    default=False,
                 )
             )
 
